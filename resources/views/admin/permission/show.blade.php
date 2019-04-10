@@ -44,8 +44,8 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Users</h3>
-          <a class="col-lg-offset-5 btn btn-success" href="{{route ('user.create')}}">Add User</a>
+          <h3 class="box-title">Permission</h3>
+          <a class="col-lg-offset-5 btn btn-success" href="{{route ('permission.create')}}">Add Permission</a>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -57,7 +57,7 @@
         <div class="box-body">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              @include('includes.messages')
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -65,19 +65,21 @@
                 <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>User Name</th> 
+                  <th>Permission Name</th> 
+                  <th>Permission For</th> 
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($users as $user)
+                  @foreach($permissions as $permission)
                 <tr>
                   <td>{{ $loop->index + 1}}</td>
-                  <td>{{ $user->name }}</td>
-                  <td><a href="{{route ('user.edit',$user->id)}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                  <td>{{ $permission->name }}</td>
+                  <td>{{ $permission->for }}</td>
+                  <td><a href="{{route ('permission.edit',$permission->id)}}"><span class="glyphicon glyphicon-edit"></span></a></td>
                   <td>
-                    <form id="delete-form-{{ $user->id }}" method="post" style="display: none;" action="{{route ('user.destroy',$user->id)}}">
+                    <form id="delete-form-{{ $permission->id }}" method="post" style="display: none;" action="{{route ('permission.destroy',$permission->id)}}">
                       @csrf
                       {{ method_field('DELETE') }}
                     </form>
@@ -85,7 +87,7 @@
                       if(confirm('Are you sure you want to delete this?'))
                         {
                           event.preventDefault();
-                          document.getElementById('delete-form-{{ $user->id }}').submit();
+                          document.getElementById('delete-form-{{ $permission->id }}').submit();
                         }
                         else{
                           event.preventDefault();
@@ -97,7 +99,8 @@
                 <tfoot>
                 <tr>
                   <th>S.No</th>
-                  <th>User Name</th> 
+                  <th>Permission Name</th> 
+                  <th>Permission For</th> 
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>

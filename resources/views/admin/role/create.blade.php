@@ -35,7 +35,51 @@
                   <div class="form-group">
                   <label for="name">Roll Title</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Enter Role Title">
-                </div>  
+                </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  
+                  <label for="name">Posts Permissions</label>
+
+                  @foreach($permissions as $permission)
+                    @if($permission->for == 'Post')
+                  <div class="checkbox">
+                    <label><input type="checkbox" name="permission[]" value="{{$permission->id}}">{{$permission->name }}</label>
+                  </div>
+                    @endif
+                  @endforeach
+
+                </div>
+
+                <div class="col-lg-4">
+                  
+                  <label for="name">Users Permissions</label>
+
+                  @foreach($permissions as $permission)
+                    @if($permission->for == 'User')
+                  <div class="checkbox">
+                    <label><input type="checkbox" name="permission[]" value="{{$permission->id}}">{{$permission->name }}</label>
+                  </div>
+                    @endif
+                  @endforeach
+
+                </div>
+
+                <div class="col-lg-4">
+                  
+                  <label for="name">Other Permissions</label>
+
+                  @foreach($permissions as $permission)
+                    @if($permission->for == 'Other')
+                  <div class="checkbox">
+                    <label><input type="checkbox" name="permission[]" value="{{$permission->id}}">{{$permission->name }}</label>
+                  </div>
+                    @endif
+                  @endforeach
+
+                </div>
+              </div>
+                <br/>
                 <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="{{route ('role.index')}}" class="btn btn-danger">Cancel</a>
