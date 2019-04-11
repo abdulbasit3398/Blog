@@ -36,39 +36,30 @@
       <div class="row">
         <div class="col-md-12">
           <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Add User</h3>
-            </div>
+             
             @include('includes.messages')
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="post" action="{{ route('user.store')}}"> 
+            <form role="form" method="post" action="{{ route('user.update',$user->id)}}"> 
               @csrf
+              {{method_field('PUT')}}
               <div class="box-body">
                 <div class=" col-lg-offset-3 col-lg-6">
 
-                  <div class="form-group">
+                <div class="form-group">
                   <label for="name">User Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter User Name" value="{{old('name')}}">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter User Name" value="{{old('name') != '' ? old('name') : $user->name}}">
                 </div> 
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="text" class="form-control" name="email" id="email" placeholder="Enter User Email" value="{{old('email')}}">
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Enter User Email" value="{{old('email') != '' ? old('email') : $user->email}}">
                 </div>
                 <div class="form-group">
                   <label for="phone">Phone Number</label>
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Phone Number" value="{{old('phone')}}">
+                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Phone Number" value="{{old('phone') != '' ? old('phone') : $user->phone}}">
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
-                </div>
-                <div class="form-group">
-                  <label for="conf_password">Confirm Password</label>
-                  <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password">
-                </div> 
-                <div class="form-group">
-                 <label> <input type="checkbox" value="1" name="status" {{old('status') == 1 ? 'checked' : ''}}>Status</label>
+                 <label> <input type="checkbox" value="1" name="status" {{$user->status == 1 ? 'checked' : ''}}>Status</label>
                 </div> 
                 <div class="form-group">
                 <label>Assign Role</label>
