@@ -27,10 +27,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
+      @include('admin.layouts.pagehead')
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
@@ -61,13 +58,15 @@
             <div class="box-header">
               @include('includes.messages')
             </div>
-            <!-- /.box-header -->
+            <!-- /.box-header  -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>S.No</th>
                   <th>User Name</th> 
+                  <th>Assigned Roles</th> 
+                  <th>Status</th> 
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -77,6 +76,12 @@
                 <tr>
                   <td>{{ $loop->index + 1}}</td>
                   <td>{{ $user->name }}</td>
+                  <td>
+                    @foreach($user->roles as $user_role)
+                      {{$user_role->name }} | 
+                    @endforeach
+                  </td>
+                  <td>{{ $user->status == 1 ? 'Active' : 'Not Active' }}</td>
                   <td><a href="{{route ('user.edit',$user->id)}}"><span class="glyphicon glyphicon-edit"></span></a></td>
                   <td>
                     <form id="delete-form-{{ $user->id }}" method="post" style="display: none;" action="{{route ('user.destroy',$user->id)}}">
@@ -100,6 +105,8 @@
                 <tr>
                   <th>S.No</th>
                   <th>User Name</th> 
+                  <th>Assigned Roles</th> 
+                  <th>Status</th> 
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>

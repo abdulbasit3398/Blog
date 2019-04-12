@@ -27,10 +27,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
+      @include('admin.layouts.pagehead')
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
@@ -56,8 +53,7 @@
         </div>
         <div class="box-body">
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+            <div class="box-header"> 
             </div>
             <!-- /.box-header -->
             <div class="box-body">

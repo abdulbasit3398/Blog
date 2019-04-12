@@ -9,6 +9,10 @@ use App\Model\admin\Permission;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,15 +50,7 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->save();
 
-
-        // if(role::where('name',$request->title)->count('id') < 1){
-        //     $role = new role;
-        //     $role->name = $request->title;
-        //     $role->save();   
-        // }
-        // else{
-        //     $this.
-        // }
+        $role->permissions()->sync($request->permission);
         return redirect(route('role.index'));
     }
 

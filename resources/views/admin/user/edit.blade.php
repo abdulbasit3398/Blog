@@ -65,7 +65,13 @@
                 <label>Assign Role</label>
                 <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select Role" style="width: 100%;" tabindex="-1" aria-hidden="true" name="role[]">
                   @foreach($roles as $role)
-                    <option value="{{$role->id}}">{{$role->name}}</option>
+                    <option value="{{$role->id}}" 
+                      @foreach($user->roles as $user_role)
+                        @if($user_role->id == $role->id)
+                          selected 
+                        @endif
+                      @endforeach
+                      >{{$role->name}}</option>
                   @endforeach
                 </select>
               </div>
