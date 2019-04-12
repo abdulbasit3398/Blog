@@ -42,7 +42,10 @@
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Title</h3>
-          <a class="col-lg-offset-5 btn btn-success" href="{{route ('post.create')}}">Add Posts</a>
+          @can('posts.create',Auth::user())
+            <a class="col-lg-offset-5 btn btn-success" href="{{route ('post.create')}}">Add Posts</a>
+          @endcan
+          
           <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -64,7 +67,11 @@
                   <td>{{ $post->subtitle }}</td>
                   <td>{{ $post->slug }}</td>
                   <td>{{ $post->created_at }}</td>
+                  @can('posts.update',Auth::user())
                   <td><a href="{{route ('post.edit',$post->id)}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                  @endcan
+
+                  @can('posts.delete',Auth::user())
                   <td>
                     <form id="delete-form-{{ $post->id }}" method="post" style="display: none;" action="{{route ('post.destroy',$post->id)}}">
                       @csrf
@@ -80,6 +87,7 @@
                           event.preventDefault();
                         }">
                       <span class="glyphicon glyphicon-trash"></span></a></td>
+                      @endcan
                 </tr> 
                 @endforeach
                 </tbody>
