@@ -55,8 +55,13 @@
                   <th>Sub Title</th>
                   <th>Slug</th>
                   <th>Created at</th>
+                  @can('posts.update',Auth::user())
                   <th>Edit</th>
+                  @endcan
+                  
+                  @can('posts.delete',Auth::user())
                   <th>Delete</th>
+                  @endcan
                 </tr>
                 </thead>
                 <tbody>
@@ -98,8 +103,13 @@
                   <th>Sub Title</th>
                   <th>Slug</th>
                   <th>Created at</th>
+                  @can('posts.update',Auth::user())
                   <th>Edit</th>
+                  @endcan
+                  
+                  @can('posts.delete',Auth::user())
                   <th>Delete</th>
+                  @endcan
                 </tr>
                 </tfoot>
               </table>
